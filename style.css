@@ -19,8 +19,8 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 30px;
-    max-width: 400px;
+    padding: 20px;
+    max-width: 500px;
     width: 100%;
 }
 
@@ -156,4 +156,414 @@ h1 {
     color: #fff;
     font-weight: bold;
     margin-top: 10px;
+    white-space: pre-line; /* 改行を有効にする */
+}
+
+/* オートモードトグルスイッチ */
+.auto-mode-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.auto-mode-label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.auto-toggle-container {
+    position: relative;
+}
+
+.auto-toggle-checkbox {
+    display: none;
+}
+
+.auto-toggle-switch {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auto-toggle-switch-btn {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: left 0.3s;
+}
+
+.auto-toggle-checkbox:checked + .auto-toggle-switch {
+    background: #4cd964;
+}
+
+.auto-toggle-checkbox:checked + .auto-toggle-switch .auto-toggle-switch-btn {
+    left: 32px;
+}
+
+/* カレンダーデザイン */
+.calendar-container {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.cal-nav-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.cal-nav-btn:active {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.holiday-mode-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: #fff;
+    padding: 6px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.holiday-mode-btn.active {
+    background: #e11d48; /* 赤色に発光 */
+    box-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
+}
+
+.calendar-weekdays div:first-child {
+    color: #ef4444; /* 日曜は赤 */
+}
+.calendar-weekdays div:last-child {
+    color: #3b82f6; /* 土曜は青 */
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-day {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    min-height: 75px;
+    padding: 4px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.calendar-day:active {
+    transform: scale(0.97);
+}
+
+.calendar-day.empty {
+    background: transparent;
+    cursor: default;
+    border: none;
+}
+
+.calendar-day.empty:active {
+    transform: none;
+}
+
+.calendar-day.sunday, .calendar-day.holiday-day {
+    background: rgba(239, 68, 68, 0.15); /* 日曜・祝日の薄い赤 */
+}
+
+.calendar-day.saturday {
+    background: rgba(59, 130, 246, 0.1); /* 土曜の薄い青 */
+}
+
+.day-number {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+    margin-bottom: 2px;
+}
+
+.calendar-day.sunday .day-number, .calendar-day.holiday-day .day-number {
+    color: #fca5a5;
+}
+
+.calendar-day.saturday .day-number {
+    color: #93c5fd;
+}
+
+/* カレンダー内の帯 */
+.day-band-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+    width: 100%;
+}
+
+.day-band {
+    font-size: 9px;
+    padding: 2px 3px;
+    border-radius: 3px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* 横澤（黄色） */
+.band-yokozawa {
+    background-color: #fde047;
+    color: #713f12;
+}
+
+/* 鈴木（緑） */
+.band-suzuki {
+    background-color: #86efac;
+    color: #14532d;
+}
+
+/* 手動休日テキストの表示スタイル */
+.band-holiday {
+    background-color: #e2e8f0;
+    color: #475569;
+    border: 1px dashed #94a3b8;
+}
+
+/* ポップアップモーダル */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: modalShow 0.3s ease-out;
+}
+
+@keyframes modalShow {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.close-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: left;
+}
+
+/* 打刻リスト */
+#modal-records-list {
+    margin-bottom: 15px;
+}
+
+.modal-record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    border: 1px solid #e2e8f0;
+}
+
+.record-info {
+    font-weight: bold;
+}
+
+.record-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.record-btn {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.record-btn.edit {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+.record-btn.edit:active {
+    background: #bae6fd;
+}
+
+.record-btn.delete {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+.record-btn.delete:active {
+    background: #fecaca;
+}
+
+.modal-divider {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 15px 0;
+}
+
+/* 編集・追加フォーム */
+.add-record-form h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    width: 60px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    background: #fff;
+    color: #333;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #00f2fe;
+    box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.2);
+}
+
+.save-record-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.1s;
+    margin-top: 5px;
+}
+
+.save-record-btn:active {
+    transform: translateY(1px);
 }
