@@ -1,5 +1,5 @@
 // Google Apps Script (GAS) の Web API URL
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbykLvkzKtIL3Go8mtRP95VIRssFgnxxQ05Pk0tTJXRnHe--2t3ECLUYKxAXTVb-27tD/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxk1fFGHDlf7mUSZvmph67vr_bCx24YbaLkPTPJOAVb7AQxQUkfQ53BCC8q2YTP8XCO/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
     // 既存UI要素
